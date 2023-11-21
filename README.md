@@ -2,7 +2,7 @@
 
 ## Deploy
 
-1. git clone
+1. git clone https://github.com/mohammadHamzeh/interview.git
 2. cd interview
 3. composer install --no-plugins --no-scripts
 4. cp .env.example .env
