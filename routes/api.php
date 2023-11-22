@@ -20,7 +20,7 @@ Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
 });
 
 Route::group(['prefix' => 'agent', 'as' => 'delayQueue.'], function () {
-    Route::post('pick_delay_queue', [DelayQueueController::class, 'delayQueue']);
+    Route::post('pick_delay_queue', [DelayQueueController::class, 'delayQueue'])->name('pick_delay_queue');
 });
 
 Route::group(['prefix' => 'statistics', 'as' => 'statistics.'], function () {

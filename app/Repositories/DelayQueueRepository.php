@@ -31,6 +31,6 @@ class DelayQueueRepository extends BaseRepository implements \App\Contracts\Repo
         $record->update([
             'agent_id' => $agentId
         ]);
-        return $record;
+        return $record->fresh();
     }
 }

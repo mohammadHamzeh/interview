@@ -20,7 +20,7 @@ class DelayQueue extends Model
 
     public function order(): BelongsTo
     {
-            return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class);
     }
 
     public function agent(): BelongsTo

@@ -22,7 +22,7 @@ class DelayedOrderQueueResource extends JsonResource
             'id' => $this->id,
             'order' => $this->whenLoaded('order'),
             'agent' => $this->whenLoaded('agent'),
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at->toIso8601String()
         ];
     }
 }
