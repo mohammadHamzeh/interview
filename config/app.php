@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Provider\FetchDeliveryTimeProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -187,5 +188,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
+
+    'fetchDeliveryTimeProvider'=>env('FETCH_DELIVERY_TIME_PROVIDER', FetchDeliveryTimeProvider::MOCKY)
 
 ];

@@ -11,9 +11,9 @@ use App\Exceptions\OrderDelivered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\DelayRequest;
 use App\Models\Order;
+use App\Service\FetchDeliveryTime\FetchDeliveryTimeFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
 class DelayController extends Controller
 {
@@ -35,7 +35,7 @@ class DelayController extends Controller
         throw_if((!empty($trip) && $trip->status == Status::DELIVERED), OrderDelivered::class);
 
         if ($this->isTripValid($trip)) {
-            $deliveryTime = $this->fetchDeliveryTime();
+            $deliveryTime =  FetchDeliveryTimeFactory::make()->getDeliveryTime();
 
             DB::transaction(function () use ($order, $deliveryTime) {
                 $this->updateOrderDeliveryTime($order, $deliveryTime);
@@ -70,12 +70,6 @@ class DelayController extends Controller
     private function isTripValid($trip): bool
     {
         return !empty($trip) && in_array($trip->status, [Status::ASSIGNED, Status::AT_VENDOR, Status::PICKED]);
-    }
-
-    private function fetchDeliveryTime()
-    {
-        $result = Http::get('https://run.mocky.io/v3/122c2796-5df4-461c-ab75-87c1192b17f7');
-        return $result->json('time');
     }
 
     private function updateOrderDeliveryTime($order, $deliveryTime): void
