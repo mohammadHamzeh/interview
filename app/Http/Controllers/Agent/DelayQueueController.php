@@ -21,7 +21,7 @@ class DelayQueueController extends Controller
     /**
      * @throws \Throwable
      */
-    public function delayQueue(DelayQueueRequest $request): DelayedOrderQueueResource
+    public function pickDelayQueue(DelayQueueRequest $request): DelayedOrderQueueResource
     {
         $agentId = $request->getAgentId();
 
