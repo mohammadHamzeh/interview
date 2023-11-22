@@ -28,7 +28,7 @@ class DelayQueueRepository extends BaseRepository implements \App\Contracts\Repo
     public function updateAgentId($id, $agentId): Model|Collection|Builder|array|null
     {
         $record = $this->model->query()->find($id);
-        $record->update([
+        $record->lockForUpdate()->update([
             'agent_id' => $agentId
         ]);
         return $record->fresh();
