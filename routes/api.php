@@ -24,5 +24,5 @@ Route::group(['prefix' => 'agent', 'as' => 'delayQueue.'], function () {
 });
 
 Route::group(['prefix' => 'statistics', 'as' => 'statistics.'], function () {
-    Route::get('vendor_delayed', [VendorController::class, 'vendorDelayed']);
+    Route::get('vendor_delayed', [VendorController::class, 'vendorDelayed'])->name('delayed_vendor');
 });
