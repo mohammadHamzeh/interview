@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,15 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
+            Route::get('version', function () {
+                return response()->json([
+                    'tag' => exec('git describe--tags--abbrev = 0'),
+                    'commit' => exec('git rev - parse--short HEAD'),
+                    'date' => exec('git show - s--format =%cI HEAD'),
+                    'service' => Str::slug(config('app . name'), ' - '),
+                ]);
+            });
+
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
