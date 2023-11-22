@@ -29,9 +29,9 @@ curl -X GET http://127.0.0.1:8000/version \
 response:
 ```json
 {
-    "tag":"v1.1.3",
-    "commit":"ed558a5",
-    "date":"2021-07-03T09:13:45+00:00",
+    "tag":"",
+    "commit":"",
+    "date":"",
     "service":"interview"
 }
 ```
